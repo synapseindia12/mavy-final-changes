@@ -1,0 +1,214 @@
+
+
+<!-- Header -->
+<div ng-include="'navigation.html'"></div>
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid">
+<div class="row">
+	
+	<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+			<div ng-include="'left_column.html'"></div>
+	</div>
+
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+<div class="forumtitle_top feedblue">forum</div>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="create_postsec">
+		<div class="cptitle_top">Create new post</div>
+		<div class="typepost">
+			<form>
+				<input type="text" class="title-field" placeholder="Title" ng-model="postTitle">
+				<textarea class="form-field" ng-model="postBody" placeholder="What's on your mind?"></textarea>
+				<button class="btn_submitpost" ng-click="submitPost()">Submit</button>
+			</form>
+			<div class="uploadMedia">
+			
+					<div class="lvl1">
+						<div id="upload-content" style="display:none;">
+							<span style="display:inline-block;background:#e6ece1;padding:8px 15px; border-radius:3px; font-size:14px;">{{fileName}}</span>
+						</div>
+						<p>
+							<button ng-click="clickInput()">Upload Media</button>
+							<input type="file" name="file" onchange="angular.element(this).scope().uploadMedia(this)" ng-click="setProjectId()">
+						</p>
+						<!-- <a href="javascript:void(0)" ng-click="showReplyBox(items.Id)">Cancel</a> -->
+					</div>
+		
+			</div>
+		</div>
+
+	
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+<div class="post_viewsec clearfix">
+
+
+
+<div class="cont_postmsg clearfix" ng-repeat="items in activeThreads">
+<!--<div class="like_dislike">
+	<ul>
+		<li><span class="likeimg"><a href="#"><img src="images/likeimg.png"alt=""></a></span><li>
+		<li><span class="likeimg"><a href="#">71</a></span><li>
+		<li><span class="likeimg"><a href="#"><img src="images/disclikeimg.png"alt=""></a></span><li>
+	</ul>
+</div>-->
+	<div class="postimg_box" id="customid{{items.Id}}">
+	<img class="img-responsive img-circle" src="{{items.Content.CreatedByUser.AvatarUrl}}" alt="">
+	</div>	
+	<div class="msg_postsec clearfix bdr_pink">
+		<span class="postname">{{items.Author.DisplayName}}</span>
+		
+		<span class="postdate">{{localDate(items.Date) | date:"MM/dd/yyyy 'at' h:mma"}}</span>	
+		<p class="posttitle" bind-html-compile="items.Subject"></p>	
+		<p class="postbody" dynamic="{{items.Body}}"></p>
+		<p class="readmore clearfix" ng-if="items.Body.length>200"><a style="float:right;" href="javascript:void(0)">..Read more</a></p>		
+		<div class="display_comment clearfix">
+			<ul>
+				<li><a href="javascript:void(0)" ng-click="showReplyBox(items.Id)" class="reply-button"><div class="reply-icon"></div><span>Reply</span></a></li>
+				<li><a href="javascript:void(0)" ng-click='getChilds(items.Id)' class="comment-button"><div class="comment-icon"></div><span class="count_comment">{{items.ReplyCount}} Comment(s)</span></a></li>				
+			</ul>
+		</div>
+<div class="replyBoxParent clearfix showReplyBoxforReply{{items.Id}}" style="display:none;">
+	<form method="post" ng-submit="saveThreadReply(replyText,items.Id)">
+		<img src="{{avatarUrl}}"><label>{{fname}} {{lname}}</label>
+		<div class="lvl1">
+			<textarea placeholder="Reply" ng-model="replyText"></textarea>
+		<div id="upload-content" style="display:none;">
+			<span style="display:inline-block;background:#e6ece1;padding:8px 15px; border-radius:3px; font-size:14px;">{{fileName}}</span>
+		</div>
+		<button>Send</button>
+		<p>
+			<button>Upload Media</button>
+			<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" ng-click="setProjectId(items.Id, replyText)">
+		</p>
+		<a href="javascript:void(0)" ng-click="showReplyBox(items.Id)">Cancel</a>
+		</div>
+		
+	</form>
+	
+</div>
+
+<div class="sub_postmsg">
+
+	<div class="cont_postmsg clearfix"  ng-repeat="reply in childThreads" ng-if="items.Id == reply.ThreadId && reply.ParentId == 0">
+		<div class="postimg_box">
+		<img class="img-responsive img-circle" src="{{reply.Content.CreatedByUser.AvatarUrl}}" alt="user">
+		</div>	
+		<div class="msg_postsec clearfix bdr_pink">
+		<span class="postname">{{reply.Author.DisplayName}}</span>
+		<span class="postdate">{{localDate(reply.Date) | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+		<span class="replytopost"><a href="javascript:void(0)" ng-click="showChildCommentBox(reply.Id)">Reply ({{repCount[reply.Id]}})</a></span>		
+		<p dynamic="{{reply.FilteredBody}}"></p>		
+		<p ng-if="reply.UnfilteredBodyLinks.image.length>0"><img src="{{reply.UnfilteredBodyLinks.image[0]}}" /></p><p ng-if="reply.UnfilteredBodyLinks.video.length>0">
+	        <video width="100%" controls>
+	            <source  ng-src="{{trustSrc(reply.UnfilteredBodyLinks.video[0])}}" type="video/mp4" />
+	            Your browser does not support the video tag.
+	        </video>
+	    </p>
+	    <p ng-if="reply.UnfilteredBodyLinks.audio.length>0">
+	        <audio controls>
+	            <source  ng-src="{{trustSrc(reply.UnfilteredBodyLinks.audio[0])}}" type="audio/mpeg" />
+	            Your browser does not support the audio tag.
+	        </audio>
+	    </p>		
+
+		</div>
+
+		<div class="subchild">
+				<div class="replyBoxParent clearfix" id="displayReplyBox{{reply.Id}}" style="display:none;">
+					<form method="post" ng-submit="savechildThreadReply(items.Id,reply.Id)">
+						<img src="{{avatarUrl}}"><label>{{fname}} {{lname}}</label>
+						<div class="lvl1">
+							<textarea placeholder="Reply" ng-model="replyToPost"></textarea>
+						<button>Send</button>
+						<p>
+							<button>Upload Media</button>
+							<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" ng-click="replyProjectId(reply.ThreadId, reply.Id, replyToPost)">
+						</p>
+						<a href="javascript:void(0)" ng-click="closeThisLevel(reply.Id)">Cancel</a>
+						</div>
+						
+					</form>
+					
+				</div>
+
+				<div class="sub_postmsg">
+
+					<div class="cont_postmsg clearfix" ng-repeat="rep in nextLevelChild" ng-if="reply.Id == rep.ParentId">
+					<div class="postimg_box">
+					<img class="img-responsive img-circle" src="{{rep.Content.CreatedByUser.AvatarUrl}}" alt="user">
+					</div>	
+					<div class="msg_postsec clearfix bdr_pink">
+					<span class="postname">{{rep.Author.DisplayName}}</span>
+					<span class="postdate">{{localDate(rep.Date) | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+							
+					<p dynamic="{{rep.FilteredBody}}"></p>		
+					<p ng-if="rep.UnfilteredBodyLinks.image.length>0"><img src="{{rep.UnfilteredBodyLinks.image[0]}}" /></p><p ng-if="rep.UnfilteredBodyLinks.video.length>0">
+				        <video width="100%" controls>
+				            <source  ng-src="{{trustSrc(rep.UnfilteredBodyLinks.video[0])}}" type="video/mp4" />
+				            Your browser does not support the video tag.
+				        </video>
+				    </p>
+				    <p ng-if="rep.UnfilteredBodyLinks.audio.length>0">
+				        <audio controls>
+				            <source  ng-src="{{trustSrc(rep.UnfilteredBodyLinks.audio[0])}}" type="audio/mpeg" />
+				            Your browser does not support the audio tag.
+				        </audio>
+				    </p>		
+
+					</div>	
+					</div>
+					</div>
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+</div>
+	</div>	
+</div>
+
+
+</div>
+</div>
+
+	</div>
+
+
+
+</div>
+</div>
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+
+<div id="backtotop" title="Back to top">
+	<a href="javascript:void(0)"></a>
+</div>
+<script type="text/javascript">
+$(function(){
+	
+	$('#backtotop a').on('click',function(){
+		$('html,body').animate({'scrollTop':'0'},500);
+		//$('#backtotop').fadeOut();
+	});
+	$(window).scroll(function(){
+		var scr = $(window).scrollTop();
+		if(scr>500){
+			$('#backtotop').fadeIn();
+		}
+		else{
+			$('#backtotop').fadeOut();
+		}
+	})
+})
+</script>

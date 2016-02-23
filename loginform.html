@@ -1,0 +1,24 @@
+<div class="panel-body">
+	<div role="form" class="form-horizontal trial-form">
+		<form ng-submit="login()" method="post">
+			<fieldset>
+				<div class="form-group">
+					<input type="text" required="true" placeholder="Username" name="trial-name" id="" class="form-control username" ng-model="sign.uname" ng-keypress="removeActive()" />
+				</div>
+				<div class="form-group">
+					<input type="password" required="true" placeholder="Password" name="trial-email" id="" class="form-control password" ng-model="sign.password" ng-keypress="removeActive()" />
+				</div>
+				<div class="form-group">
+				   <button type="submit" class="btn btn-lg signupfacebook signin">Log In</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<div class="panel-footer">
+	<label class="text-center or">OR</label>
+	<button type="submit" class="btn btn-lg fb_login" ng-click="fbLogin()"><img src="images/fb_login.png"></button>
+	<p style="margin-top: 5px;
+    margin-bottom: 0; text-align: center">Not registered yet?<a href="http://signup.mavycommunity.com/mrIWeb/mrIWeb.dll?I.Project=S211161&id=NewId&src=3" target="_blank" style="margin-left: 5px; text-decoration: underline">Sign Up</a></p>
+</div>
+

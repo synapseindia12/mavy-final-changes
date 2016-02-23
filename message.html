@@ -1,0 +1,98 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+			<div ng-include="'left_column.html'"></div>
+		</div>
+		<div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+			<div class="middle_forum message">
+				<div class="forumtitle_top">MESSAGES</div>
+				<div class="clearfix messageBx" ng-repeat="message in messages track by $index">
+					<div class="messageIcon" ng-if="!message.HasRead"><a><i class="fa fa-circle"></i></a></div>
+					<div class="messageBxrt">
+						<div class="txtBx" href="javascript:void(0)" ng-click="showMessage(message)"><img alt="" src="{{message.CreatedUser.AvatarUrl}}" class="img-responsive img-circle"></div>
+						<div class="text">
+							<h2 href="javascript:void(0)" ng-click="showMessage(message)">{{message.CreatedUser.DisplayName | uppercase}}</h2>
+							<p href="javascript:void(0)" ng-click="showMessage(message)" class="postbody" dynamic="{{message.LastMessage.Body}}"></p>
+							<p class="readmore clearfix" ng-if="message.LastMessage.Body.length > 100"><a style="float:right;" href="javascript:void(0)">..Read more</a></p>
+						</div>
+						<div class="deleteBx">
+							<a href="javascript:void(0)" ng-click="showMessage(message)" class="reply-button"><div class="reply-icon"></div><span>Reply</span></a>
+						</div>
+						<p class="clear"></p>
+						<hr/>
+						<div class="card internalCards subchild replyBoxParent" ng-repeat="items in internalMessages" ng-show="items.ConversationId == message.LastMessage.ConversationId">
+							<div class="txtBx"><img alt="" src="{{items.Author.AvatarUrl}}" class="img-responsive img-circle"></div>
+							<div class="text">
+								<h2>{{items.Author.DisplayName | uppercase}}</h2>
+								<p dynamic="{{items.Body}}"></p>
+							</div>
+							<p class="clear"></p>
+							<hr/>
+							<div class="card comment-form" ng-show="$last">
+								<form name="messageReply" class="card-section" method="post" ng-submit="submitMessageReply(items)">
+									<div class="grid-block" id="reply-box">
+										<div class="small-12 medium-12 grid-content">
+											<label class="forum-label">
+												Reply to Message
+												<textarea cols="40" rows="8" name="comment" id="reply" ng-model="items.messageReplyText"></textarea>
+											</label>
+											<div id="comment-button">                                                
+												<button type="submit" class="button fa" id="add-comment">Send</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<p class="clear"></p>
+							<hr/>
+						</div>
+					</div>
+				</div>
+				<div ng-if="messages.length <=0">
+					<h4 style="text-transform: uppercase; text-align: center; margin-top: 30px; color: #5b5b5b">Sorry, there are no messages to view :(</h4>
+				</div>
+			</div>
+		</div>			
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<div class="quickpool_cont compose">
+				
+				<div class="greentitle_top">COMPOSE</div>
+				<form ng-submit="createNewMessage()" method="post" class="form-container">
+					<div class="imgloader" ng-show="disableSendButton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
+					<div class="quickpool clearfix">
+						<input type="text" placeholder="To: Moderators" class="form-control inputbx" ng-model="subject" disabled />
+						<textarea class="form-control textarea" ng-model="messageBody" required></textarea>
+						<div class="center_btn clearfix">
+							<button class="postbtn" type="submit" style="margin: 0; float: left" ng-hide="hideSendButton" ng-disabled="disableSendButton">SEND</button>
+							<span class="infoM success mess" ng-show="hideSendButton && !hideSentMessage"><img src="images/check.png">Message Sent</span>
+							<span class="infoM failure mess" ng-show="hideSentMessage && hideSendButton"><img src="images/error.png">Message Not Sent</span>
+						</div>			
+					</div>
+				</form>
+			</div>
+			<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'});
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'});
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'});
+		$('.mobile_nav').removeClass('shows');
+	});
+</script>

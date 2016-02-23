@@ -1,0 +1,1 @@
+The ReplyCount data we are getting in response is the no. of overall childrens of that post. It should be no. of direct children of that post. Please make following changes at your end. It will be get corrected automatically.

@@ -1,0 +1,85 @@
+<style type="text/css">
+	.custom-radio{
+		width: 18px;
+		height: 18px;
+		display: inline-block;
+		position: relative;
+		z-index: 1;
+		top: 3px;
+		background: url("images/radio.png") no-repeat;
+	}
+	.custom-radio:hover{            
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio.selected{
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio input[type="radio"]{
+		margin: 1px;
+		position: absolute;
+		z-index: 2;            
+		cursor: pointer;
+		outline: none;
+		opacity: 0;
+		/* CSS hacks for older browsers */
+		_noFocusLine: expression(this.hideFocus=true); 
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		filter: alpha(opacity=0);
+		-khtml-opacity: 0;
+		-moz-opacity: 0;
+	}
+    /* Let's Beautify Our Form */
+   
+</style>
+<div ng-if="pollforvotes.length > 0">
+	<div class="quickpool_cont" id="anm{{item.itemId}}" ng-repeat="item in pollforvotes | limitTo: 1">
+		<form class="dailyPoll" name="pollForm" ng-submit="submitPoll(item, option)">
+			<div class="greentitle_top">QUICK POLL<a href="javascript:void(0)" ng-click="animateDiv(item.itemId)" class="quiz_close"></a></div>
+			<div class="quickpool clearfix"> 
+				<h3 bind-html-compile="item.pollTitle"></h3>
+				<ul>
+					<li ng-repeat="option in item.options.categories" ng-if="item.type == 'SingleChoice'">
+						<div class="radio">
+							<label><span class='custom-radio'><input type="radio" name="pollvote{{item.itemId}}" ng-value="option.values" ng-model="option.pollvote" /></span> {{option.description}}</label>
+						</div>
+					</li>
+					<li ng-repeat="option in item.options.categories" ng-if="item.type != 'SingleChoice'">
+						<div class="radio">
+							<label><input type="checkbox" name="poll" id="poll-radio-{{$index}}" value="{{option.values}}" ng-model="option.pollvote" /> {{option.description}}</label>
+						</div>
+					</li>
+				</ul>
+				<div class="center_btn">
+					<button class="postbtn" type="submit">SUBMIT VOTE</button>
+				</div>			
+			</div>	
+		</form>
+	</div>
+</div>
+
+<div ng-if="dataforResults.length > 0">
+	<div class="quickpool_cont" id="results{{item.itemId}}" ng-repeat="item in dataforResults | limitTo: 2">
+		<div class="greentitle_top">PREVIOUS POLL RESULTS<a href="javascript:void(0)" ng-click="animateResults(item.itemId)" class="quiz_close"></a></div>
+		<div class="quickpool clearfix">
+			<h3 bind-html-compile="item.pollTitle"></h3>
+			<ul>
+				<li ng-repeat="option in item.pollresults">
+					<span class="result-text" id="result-poll-{{$index}}">
+						{{option.count}}%
+					</span>
+					{{option.category}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function(){
+	$(document).on('click','.custom-radio',function(){
+		$(this).closest('li').siblings('li').find('.custom-radio').removeClass('selected');
+		$(this).addClass('selected');
+	})
+	
+})
+</script>

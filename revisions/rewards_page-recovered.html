@@ -1,0 +1,179 @@
+
+
+ <body class="dashboard_pages">
+<!-- Header -->
+<div ng-include="'navigation.html'"></div>
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid mrgn-btm">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+	<div class="forumtitle_top feedblue">AVAILABLE CREDIT</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/amozen1.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Amazon.com Gift Cards* never expire and can be redeemed towards millions of items at www.amazon.com. Your Current Credit needs to be at least $10.</p>
+				<a href="javascript:void(0);" ng-click="openModal()" class="redeem">REDEEM</a>
+			</div>
+		</div>
+		<div class="separator"></div>
+	</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/amozen1.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Amazon.com Gift Cards* never expire and can be redeemed towards millions of items at www.amazon.com. Your Current Credit needs to be at least $10.</p>
+			</div>
+			<a class="coming">COMING SOON</a>
+		</div>
+		<div class="separator"></div>
+	</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/amozen1.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Amazon.com Gift Cards* never expire and can be redeemed towards millions of items at www.amazon.com. Your Current Credit needs to be at least $10.</p>
+			</div>
+			<a class="coming">COMING SOON</a>
+		</div>
+		<div class="separator"></div>
+	</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/amozen1.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Amazon.com Gift Cards* never expire and can be redeemed towards millions of items at www.amazon.com. Your Current Credit needs to be at least $10.</p>
+			</div>
+			<a class="coming">COMING SOON</a>
+		</div>
+		<div class="separator"></div>
+	</div>
+
+</div>
+</div>
+		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div class="credit_info">
+		<div class="forumtitle_top feedblue">CURRENT CREDIT</div>
+		<div class="credits clearfix">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-6">
+					<span>Total Earned</span>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-6">
+					<label>${{redeemable}}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="credit_info history">
+		<div class="forumtitle_top feedblue">HISTORY</div>
+		<div class="credits clearfix">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+					<span>$35</span>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-8">
+					<label>Amazon.com Gift Card</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+					<span>$35</span>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-8">
+					<label>Amazon.com Gift Card</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+					<span>$35</span>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-8">
+					<label>Amazon.com Gift Card</label>
+				</div>
+			</div>
+			
+		</div>
+	</div>	
+</div>
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+<!-- Middle Section end -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<!-- Custom Select box -->
+
+<script src="js/bootstrap-select.js"></script>
+
+<script type="text/javascript">
+    function customRadio(radioName){
+        var radioButton = $('input[name="'+ radioName +'"]');
+        $(radioButton).each(function(){
+            $(this).wrap( "<span class='custom-radio'></span>" );
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+        });
+        $(radioButton).click(function(){
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+            $(radioButton).not(this).each(function(){
+                $(this).parent().removeClass("selected");
+            });
+        });
+    }
+    $(document).ready(function (){
+        customRadio("browser");
+        customRadio("search-engine");            
+        customRadio("confirm");
+    })
+	
+	$('.selectpicker').selectpicker();
+</script>
+
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'})
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'})
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'})
+		$('.mobile_nav').removeClass('shows');
+	})
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>

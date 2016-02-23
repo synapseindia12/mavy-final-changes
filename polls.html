@@ -1,0 +1,52 @@
+<div ng-if="pollforvotes.length > 0">
+	<div class="quickpool_cont" id="anm{{item.itemId}}" ng-repeat="item in pollforvotes | limitTo: 1">
+		<form class="dailyPoll" name="pollForm" ng-submit="submitPoll(item, option)">
+			<div class="greentitle_top">QUICK POLL<a href="javascript:void(0)" ng-click="animateDiv(item.itemId)" class="quiz_close"></a></div>
+			<div class="quickpool clearfix"> 
+				<h3 bind-html-compile="item.pollTitle"></h3>
+				<ul>
+					<li ng-repeat="option in item.options.categories" ng-if="item.type == 'SingleChoice'">
+						<div class="radio">
+							<label><span class="custom-radio"><input type="radio" name="pollvote{{item.itemId}}" ng-value="option.values" ng-model="option.pollvote"/></span> {{option.description}}</label>
+						</div>
+					</li>
+					<li ng-repeat="option in item.options.categories" ng-if="item.type != 'SingleChoice'">
+						<div class="radio">
+							<label><span class="custom-checkbox" custom-checks><input type="checkbox" name="pollCheck" id="poll-radio-{{$index}}" value="{{option.values}}" ng-model="option.pollvote" /></span>{{option.description}}</label>
+						</div>
+					</li>
+				</ul>
+				<div class="center_btn">
+					<button class="postbtn" type="submit">SUBMIT VOTE</button>
+				</div>			
+			</div>	
+		</form>
+	</div>
+</div>
+
+<div ng-if="dataforResults.length > 0">
+	<div class="quickpool_cont" id="results{{item.itemId}}" ng-repeat="item in dataforResults | limitTo: 2">
+		<div class="greentitle_top">PREVIOUS POLL RESULTS<a href="javascript:void(0)" ng-click="animateResults(item.itemId)" class="quiz_close"></a></div>
+		<div class="quickpool clearfix">
+			<h3 bind-html-compile="item.pollTitle"></h3>
+			<ul>
+				<li ng-repeat="option in item.pollresults">
+					<span class="result-text" id="result-poll-{{$index}}">
+						{{option.count}}%
+					</span>
+					{{option.category}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function(){
+	$(document).on('click','.custom-radio',function(){
+		$(this).closest('li').siblings('li').find('.custom-radio').removeClass('selected');
+		$(this).addClass('selected');
+	});
+	
+})
+</script>

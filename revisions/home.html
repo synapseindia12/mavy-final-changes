@@ -1,0 +1,192 @@
+
+<!-- Header -->
+ <div ng-include="'navigation.html'"></div>
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid mrgn-btm">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum pad_bot_20px">
+<div class="forumtitle_top feedblue">Feed</div>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="quizzes_sec clearfix">
+			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="quizeesbox_left clearfix">					
+					<h2 class="titlesame">QUIZZES</h2>
+					
+					<ul>
+						<li ng-repeat="assignment in allAssignments track by $index" ng-click="showAssignmentTasks(assignment)" style="cursor:pointer;">
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-12">
+									<cite>{{$index+1}}</cite>
+								</div>
+								<div class="col-lg-6 col-md-7 col-sm-12">
+									<div class="qz_text">
+										<h3>{{assignment.modules[0].moduleTitle}}</h3>
+										<p dynamic="{{assignment.modules[0].options.instructions}}"></p>
+									</div>
+									
+								</div>
+								<div class="col-lg-4 col-md-3 col-sm-12" style="text-align:center">
+									<a href="javascript:void(0)" data-time="{{assignment.modules[0].lengthInMinutes}} minutes" ng-if="assignment.modules[0].lengthInMinutes>=15"><img src="images/qtr_watch.png" alt="More than 15 mins"></a>
+									<a href="javascript:void(0)" data-time="{{assignment.modules[0].lengthInMinutes}} minutes" ng-if="assignment.modules[0].lengthInMinutes>=5 && assignment.modules[0].lengthInMinutes<15"><img src="images/less15watch.png" alt="less than 15 mins"></a>
+									<a href="javascript:void(0)" data-time="{{assignment.modules[0].lengthInMinutes}} minutes" ng-if="assignment.modules[0].lengthInMinutes<5"><img src="images/less5watch.png" alt="less than 5 mins"></a>
+									<a ng-if="assignment.modules[0].mode==3" data-mode="{{assignment.modules[0].mode}}" href="javascript:void(0)"><img src="images/desktop.png"></a>
+									<a ng-if="assignment.modules[0].mode==2" data-mode="{{assignment.modules[0].mode}}" href="javascript:void(0)"><img src="images/desktop.png"></a>
+									<a ng-if="assignment.modules[0].mode==1" data-mode="{{assignment.modules[0].mode}}" href="javascript:void(0)"><img src="images/mobile_icon.png"></a>
+									<a ng-if="assignment.modules[0].mode==2" data-mode="{{assignment.modules[0].mode}}" href="javascript:void(0)"><img src="images/mobile_icon.png"></a>
+								</div>
+							</div>
+						</li>
+						
+					<!--	<li>
+							<h3>COFFEE COFFEE COFFEE</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/pf_img2.jpg" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>
+						
+						<li>
+							<h3>WORKSPACE ARCHETYPES</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/pf_img3.jpg" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="quizeesbox_right clearfix">
+					<div class="top_postlist">
+					<h2 class="titlesame color-pink">RECENT POSTs</h2>
+					
+<ul>
+		<li ng-repeat="post in tempArray | limitTo: 3">
+		<div class="cont_postmsg clearfix">
+	<!--	<div class="like_dislike">
+			<ul>
+				<li><span class="likeimg"><a href="#"><img src="images/likeimg.png"alt=""></a></span></li>
+				<li><span class="likeimg"><a href="#">100</a></span></li>
+				<li><span class="likeimg"><a href="#"><img src="images/disclikeimg.png"alt=""></a></span></li>
+			</ul>
+		</div>-->
+		<div class="postimg_box">
+		<img class="img-responsive img-circle" src="{{post.Content.CreatedByUser.AvatarUrl}}" alt="">
+		</div>	
+		<div class="msg_postsec clearfix bdr_pink">
+		<p class="postname">{{post.Author.DisplayName}}</p>
+		<p class="posttitle" bind-html-compile="post.Subject"></p>
+		<p class="postbody" dynamic="{{post.Body}}"></p>	
+		<p class="readmore clearfix" ng-if="post.Body.length>100"><a style="float:right;" href="javascript:void(0)">..Read more</a></p>
+
+		<div class="display_comment clearfix">
+		<ul>
+		<li><a href="javascript:void(0)" ng-click="showForum(post.Id)" class="reply-button"><div class="reply-icon"></div><span>Reply</span></a></li>
+		<li class="pull-right" style="margin-right:0"><a href="javascript:void(0)" ng-click="showForum(post.Id)" class="comment-button"><div class="comment-icon"></div><span class="count_comment">{{post.ReplyCount}} Comment(s)</span></a></li>				
+		</ul>
+		</div>		
+		</div>	
+		</div>
+		</li>
+		
+		
+		
+</ul>
+					
+		</div>
+		
+		
+		<div class="recent_msglist">
+		<h2 class="titlesame color-cyn">RECENT MESSAGES</h2>
+<ul>
+	<li ng-repeat="message in recentMessages | limitTo: 3">
+		<div class="cont_postmsg clearfix">		
+		<div class="postimg_box">
+		<img class="img-responsive img-circle" src="{{message.CreatedUser.AvatarUrl}}" alt="">
+		</div>	
+		<div class="msg_postsec clearfix bdr_pink">
+		<span class="postname">{{message.CreatedUser.DisplayName | uppercase}}</span>		
+		<p class="postbody" dynamic="{{message.LastMessage.FilteredBody}}"></p>
+		<p class="readmore clearfix" ng-if="message.LastMessage.FilteredBody.length>100"><a style="float:right;" href="javascript:void(0)">..Read more</a></p>
+		</div>
+		<div class="">
+			<a href="javascript:void(0)" ng-click="showMessage(message)" class="reply-button"><div class="reply-icon"></div><span>Reply</span></a>
+		</div>
+		</div>
+	</li>
+</ul>
+		
+		</div>
+		
+		
+	</div>
+</div>			
+</div>
+		
+	
+
+
+	
+	</div>			
+</div>
+
+</div>
+</div>
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+<!-- Middle Section end -->
+<script type="text/javascript">
+		$(function(){
+			$('body').on('mouseover','.quizeesbox_left ul li a:first-child',function(){
+				$('.quiz_tip').remove();
+				var quizL = $(this).data('time');
+				var toolT = "<div class='quiz_tip'>Estimated Time: "+quizL+"</div>";
+				$('body').append(toolT);
+				var elW = $('.quiz_tip').outerWidth()/2;
+				$('.quiz_tip').css({'top':($(this).offset().top-80),'left':($(this).offset().left-elW)});
+
+			})
+			$('body').on('mouseout','.quizeesbox_left ul li a:first-child',function(){
+				$('.quiz_tip').remove();
+			})
+			$('body').on('mouseover','.quizeesbox_left ul li a[data-mode]',function(){
+	
+				$('.quiz_tip').remove();
+				var mode=$(this).data('mode');
+				if(mode==1){
+					var toolT = "<div class='quiz_tip'>Mobile only quiz</div>";
+				}
+				else if(mode==3){
+					var toolT = "<div class='quiz_tip'>Desktop only quiz</div>";
+				}
+				else{
+					var toolT = "<div class='quiz_tip'>Desktop & Mobile quiz</div>";
+				}
+				$('body').append(toolT);
+				var elW = $('.quiz_tip').outerWidth()/2;
+				$('.quiz_tip').css({'top':($(this).offset().top-80),'left':($(this).offset().left-elW)});
+			})
+			$('body').on('mouseout','.quizeesbox_left ul li a[data-mode]',function(){
+				$('.quiz_tip').remove();
+			})
+		})
+		$(document).ready(function () {
+			$(".count_comment").change(function() {
+				var commentCount = $(".count_comment").data('commentCount');
+				alert(commentCount);
+			});
+		})
+	</script>
+
+
+

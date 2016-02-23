@@ -1,0 +1,174 @@
+<!-- Header -->
+<!-- <div ng-include="'navigation.html'"></div> -->
+<!-- End header -->
+<!-- Middle Section Start -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+			<div ng-include="'left_column.html'"></div>
+		</div>
+
+		<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+			<div class="middle_forum">
+				<div class="forumtitle_top feedblue">QUIZ <span ng-if="assignment.moduleTitle"> - {{assignment.moduleTitle}}</span><a class="back_quiz" href="#/assignment" ng-href="#/assignment"><i class="fa fa-angle-left fa-lg"></i>&nbsp; Back to All Quizzes</a></div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<!-- <pre>{{assignment}}</pre>
+						<p class="quiz-des" ng-if="assignment.modules" dynamic="{{assignment.options.instructions}}"></p> -->
+						<!-- <p class="quiz-des" ng-if="!assignment.modules" dynamic="{{assignment.options.instructions}}"></p> -->
+						<!-- If it's not a quiz nor polls -->
+						<div class="norQP" ng-if="!showIframe && !showPolls">
+							<div class="row">
+								<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+									<img alt="profile image" class="profile" src="{{userAvatarUrl}}" />
+									<p class="uname">{{displayName}}</p>
+								</div>
+								<div class="col-xs-7 col-sm-7 col-lg-9 col-md-8">
+									<p class="subject" bind-html-compile="displayTasks[0].Subject" style="padding-right: 20px;"></p>
+									<!-- <p class="title" bind-html-compile="displayTasks[0].Title"></p> -->
+									<p bind-html-compile="displayTasks[0].FilteredQuestionText" style="padding-right: 20px;"></p>
+									<p ng-if="displayTasks[0].UnfilteredQuestionTextLinks.audio.length > 0">
+										<audio src="{{displayTasks[0].UnfilteredQuestionTextLinks.audio[0] | trustUrl}}" audioplayer controls></audio>	
+									</p>
+									<p ng-if="displayTasks[0].UnfilteredQuestionTextLinks.video.length > 0">
+										<video ng-src="{{displayTasks[0].UnfilteredQuestionTextLinks.video[0] | trustAsResourceUrl}}" width="600" height="400" controls></video>
+									</p>
+									<p class="date">{{localDate(displayTasks[0].ActivationDate)}}</p>
+									<!--<p class="replys clearfix">
+										<a href="javascript:void(0);" style="float:left;" ng-click="showReplies()">Replies ( <span class="replies-count">{{replyCounts}}</span> )</a>
+										<a style="float:right;" href="javascript:void(0);" ng-click="gotoReplyBox()">Reply</a>
+									</p>-->
+									<div class="assignm">
+										<form id="replyForm" class="card-section" method="post" ng-submit="markCompleted(displayTasks[0])">
+											<div class="grid-block" id="reply-box">
+												<div class="small-12 medium-12 grid-content">
+													<label class="forum-label" style="padding:0">
+														<textarea cols="40" rows="8" name="comment" id="reply" ng-model="reply"></textarea>
+													</label>
+													<div id="comment-button" class="clearfix">                                                
+														<input type="submit" value="Submit Reply" class="button fa" id="add-comment" style="margin-right:0"/>
+													</div>
+												</div>
+											</div>
+										</form>
+										<div style="left: 0;position: absolute;top: 122px;width: 138px;" ng-show="disableSendButton" class="ng-hide">
+											<img src="http://mavycommunity.com/images/loading45.gif" />
+										</div>
+										<div class="uploadMediaButton uploadMedia" id="forum-media">
+											<div class="lvl1">
+												<div id="upload-content" ng-show="showContent">
+													<span style="display:inline-block;background:#e6ece1;padding:8px 15px; border-radius:3px; font-size:14px;">{{fileName}}</span>
+												</div>
+												<p>
+													<button upload-media>Upload Media</button>
+													<input type="file" name="file" id="mediaUpload" onchange="angular.element(this).scope().uploadMedia(this)" />
+												</p>
+												<!-- <a href="javascript:void(0)" ng-click="showReplyBox(items.Id)">Cancel</a> -->
+											</div>
+										</div>
+									</div>
+									<div ng-repeat="items in allReplies" class="postContent">
+										<div class="row">
+											<div class="col-lg-2 col-md-4 col-sm-5 col-xs-12">
+												<img alt="profile image" class="profile" src="{{items.Content.CreatedByUser.AvatarUrl}}" />
+												<p class="uname" >{{items.Author.Username}}</p>
+											</div>
+											<div class="col-lg-10 col-md-8 col-sm-7 col-xs-12">
+												<p bind-html-compile="items.FilteredBody" class="reply-body"></p>
+												<p class="date">{{localDate(items.Date)}}</p>
+												<p class="replys clearfix">
+													<a style="float:left" href="javascript:void(0);" ng-click="gottoChildReplyBox(items.Id, displayTasks[0].TaskId)">Comment</a>
+													<a href="javascript:void(0);" ng-click="showChildcomments(items.Id, displayTasks[0].TaskId)" style="float:right">Comments ( <span class="replies-count">{{items.ReplyCount}}</span> )</a>
+												</p>
+												<div class=" replys childComments newChildReplyBox childAssignment{{items.Id}}" style="display:none;">
+													<form id="replyForm" class="card-section" method="post" ng-submit="submitChildReply(items.Id, displayTasks[0].TaskId)">
+														<div id="reply-box">
+															<div>
+																<label class="forum-label">
+																	Mark Complete
+																	<textarea cols="40" rows="8" name="comment" id="replyNewChild{{items.Id}}" ng-model="replyNewChild"></textarea>
+																</label>
+																<div id="comment-button">                                                
+																	<input type="submit" value="Submit Comment" class="button fa" id="add-comment" />
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+												<div class="childComments assinement-card showchildCommentsreplies{{items.Id}}" ng-repeat="replies in childReplies" ng-if="replies.ParentId == items.Id" style="display:none;">
+													<div class="row">
+														<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+															<img alt="profile image" class="profile" src="{{replies.Content.CreatedByUser.AvatarUrl}}" />
+															<p class="uname" >{{replies.Author.Username}}</p>
+														</div>
+														<div class="col-lg-10 col-md-6 col-sm-6 col-xs-12">
+															<p bind-html-compile="replies.FilteredBody"></p>
+															<p class="date">{{localDate(replies.Date)}}</p>											
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form_section">
+								<button id="submit" value="SAVE CHANGES" class="save right-arrow" type="submit" ng-click="getNextTask(i)" ng-hide="hideLeftArrow">CONTINUE</button>
+								<button id="submit" value="SAVE CHANGES" class="save left-arrow" type="submit" ng-click="getPreviousTasks(i)" ng-show="hideRightArrow">BACK</button>
+							</div>
+						</div>
+						<!-- Ends Here -->
+						<!-- If it's not a quiz -->
+						<div class="grid-content" ng-if="showPolls">
+							<form class="dailyPoll" name="pollForm">
+								<aside class="card pollResults">
+									<div id="pollContent">
+										<h5 class="pollQuestion" id="currentUpdaQuestion" bind-html-compile="tasks[i].QuestionText"></h5>
+										<p ng-repeat="option in tasks[i].options.categories" ng-if="tasks[i].type == 'SingleChoice' && !showResults">
+											<span class="radio">
+												<label><span class='custom-radio'><input type="radio" name="poll" id="poll-radio-{{index}}" value="{{$index + 1}}" ng-model="option.pollvote" /></span> {{option.description}}</label>
+											</span>
+										</p>
+										<p ng-repeat="option in tasks[i].options.categories" ng-if="tasks[i].type != 'SingleChoice' && !showResults">
+											<input type="checkBox" name="poll" id="poll-radio-{{$index}}" value="{{$index + 1}}" ng-model="option.pollvote" />
+											<label for="poll-radio-{{$index}}" id="label-{{$index}}" class="inline-label">
+												{{option.description}}
+											</label>
+										</p>
+										<p class="percents" ng-repeat="option in tasks[i].options.categories" ng-if="showResults">
+											<span class="result-text" id="result-poll-{{$index}}">
+												{{option.values}}%
+											</span>
+											{{option.description}}
+										</p>
+										<button type="submit" class="button" id="pollSubmit" ng-click="submitSocialPolls(tasks[i])" ng-if="!showResults">Submit Poll</button>
+									</div>
+									<div class="form_section">
+										<button id="submit" value="SAVE CHANGES" class="save right-arrow" type="submit" ng-click="getNextPoll(i)" ng-hide="hideLeftArrow">CONTINUE</button>
+										<button id="submit" value="SAVE CHANGES" class="save left-arrow" type="submit" ng-click="getPreviousPoll(i)" ng-show="hideRightArrow">BACK</button>
+									</div>
+								</aside>
+							</form>
+						</div>
+						<!-- Ends Here -->
+						<div ng-if="showIframe" style="padding:20px;">
+							<iframe ng-src="{{iframeSource | trustAsResourceUrl}}" class="quiz-frame"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+				
+		<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+			<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+		</div>
+	</div>
+</div>
+<!-- Middle Section end -->
+<script>
+$(function(){
+	$(document).on('click','.custom-radio',function(){
+		$('.custom-radio').removeClass('selected');
+	});	
+})
+</script>

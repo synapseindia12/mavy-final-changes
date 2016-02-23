@@ -1,0 +1,146 @@
+
+
+
+<!-- Header -->
+<div ng-include="'navigation.html'"></div>
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid mrgn-btm">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+	<div class="forumtitle_top feedblue">AVAILABLE CREDIT</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/amozen1.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Amazon.com Gift Cards* never expire and can be redeemed towards millions of items at www.amazon.com. Your Current Credit needs to be at least $10.</p>
+				<a href="javascript:void(0);" ng-click="openModal()" class="redeem">REDEEM</a>
+			</div>
+		</div>
+		<div class="separator"></div>
+	</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/target.png"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Target Gift Cards* never expire and can be redeemed towards thousands of items at any Target store. Your Current Credit needs to be at least $10.</p>
+				<a href="javascript:void(0);" ng-click="openModal()" class="coming">COMING SOON</a>
+			</div>
+		</div>
+		<div class="separator"></div>
+	</div>
+	<div class="reward_page">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"><img src="images/starbucks.png" style="padding:5px"></div>
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+				<p>Starbucks Gift Cards* never expire and can be redeemed at thousands of stores around the world. Your Current Credit needs to be at least $10.</p>
+				<a href="javascript:void(0);" ng-click="openModal()" class="coming">COMING SOON</a>
+			</div>
+		</div>
+		<div class="separator"></div>
+	</div>
+</div>
+</div>
+		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div class="credit_info">
+		<div class="forumtitle_top feedblue">CURRENT CREDIT</div>
+		<div class="credits clearfix">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
+					<span>Total Earned</span>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
+					<label>${{redeemable}}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="credit_info history">
+		<div class="forumtitle_top feedblue">HISTORY</div>
+		<div slim-scroll class="credits clearfix">
+			<div class="row" ng-repeat="inc in incentivesDataArray">			
+				<div class="col-lg-4 col-md-12 col-sm-12 col-xs-4">
+					<span>${{inc.amount}}</span>
+				</div>
+				<div class="col-lg-8 col-md-12 col-sm-12 col-xs-8">
+					<label>{{inc.description}}</label>
+				</div>
+			</div>
+			<div class="row" ng-if="incentivesDataArray.length == 0">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<span style="padding-top:45px">No previous data</span>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+<!-- Middle Section end -->
+
+<script type="text/javascript">
+    function customRadio(radioName){
+        var radioButton = $('input[name="'+ radioName +'"]');
+        $(radioButton).each(function(){
+            $(this).wrap( "<span class='custom-radio'></span>" );
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+        });
+        $(radioButton).click(function(){
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+            $(radioButton).not(this).each(function(){
+                $(this).parent().removeClass("selected");
+            });
+        });
+    };
+    $(document).ready(function (){
+        customRadio("browser");
+        customRadio("search-engine");            
+        customRadio("confirm");
+    });
+</script>
+
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'})
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'})
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'})
+		$('.mobile_nav').removeClass('shows');
+	})
+/*$(window).load(function(){
+
+	if($('.history .credits').height()>160){
+		$('.history .credits').slimScroll({
+	        height: '160px'
+	    });
+	}
+	
+})*/
+</script>
+
+

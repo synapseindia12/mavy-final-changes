@@ -1,0 +1,31 @@
+<div ng-controller="profileCtrl">
+
+		<div class="myprofile_cont brd_radius">
+			<div class="bluetitle_top">MY PROFILE</div>
+			<div class="myprofile_inner">
+				<div class="profile_name clearfix">
+				<span class="user_profpic"><img class="img-responsive img-circle" src="{{avatarUrl}}" alt=""></span>
+				<div class="user_dtl_right">
+				<span class="user_dtl">{{fname}} {{lname}}</span>
+				<span class="user_alias">{{email}}</div>
+                <span class="rwd_balance">Rewards Balance:</span>
+				<span class="rwd_price">${{redeemable}}</span>
+				</div>
+                &nbsp;<br/>
+			</div>
+			
+	<div class="profile_listing clearfix">
+		<ul>
+			<li><a ng-class="rewards == true ? 'active': ''" ng-click="redirectTo('rewards')"><span class="reward_icon"></span> REWARDS</a></li>
+			<li><a ng-class="settings == true ? 'active': ''" ng-click="redirectTo('profile')"><span class="setting_icon"></span> SETTINGS</a></li>
+			<li><a ng-class="badges == true ? 'active': ''" ng-click="redirectTo('badges')"><span class="badges_icon"></span> BADGES</a></li>
+		</ul>
+	</div>
+			
+		</div>
+		
+		<div class="profile_bottom clearfix" align="center" style="font-family: 'Montserrat', sans-serif; color: #fff; font-weight: lighter;">
+			&copy; 2015 The Agency. All rights reserved.
+        </div>
+
+</div>

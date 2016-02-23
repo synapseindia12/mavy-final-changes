@@ -1,0 +1,163 @@
+<style type="text/css">
+	.custom-radio{
+		width: 18px;
+		height: 18px;
+		display: inline-block;
+		position: relative;
+		z-index: 1;
+		top: 3px;
+		background: url("images/radio.png") no-repeat;
+	}
+	.custom-radio:hover{            
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio.selected{
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio input[type="radio"]{
+		margin: 1px;
+		position: absolute;
+		z-index: 2;            
+		cursor: pointer;
+		outline: none;
+		opacity: 0;
+		/* CSS hacks for older browsers */
+		_noFocusLine: expression(this.hideFocus=true); 
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		filter: alpha(opacity=0);
+		-khtml-opacity: 0;
+		-moz-opacity: 0;
+	}
+    /* Let's Beautify Our Form */
+   
+</style>
+
+<!-- Header -->
+<!-- <div ng-include="'navigation.html'"></div> -->
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+<div class="middle_forum">
+	<div class="forumtitle_top feedblue">MESSAGES<a class="back_quiz" href="#/messages" ng-href="#/messages"><i class="fa fa-angle-left fa-lg"></i>&nbsp; Back to Messages</a></div>
+
+	<div class="msg_internal">
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+				<img src="{{firstMessage[0].Author.AvatarUrl}}" class="sender" />
+			</div>
+			<div class="col-xs-7 col-sm-7 col-lg-8 col-md-8">
+				<div class="show_message">
+					<div class="clearfix">
+						<label>{{firstMessage[0].Author.DisplayName}}</label>
+						<a href="javascript:void(0)" class="delete-thread">Delete Thread</a>
+						<cite class="date-show">{{localDate(firstMessage[0].CreatedDate) | date:"MM/dd/yyyy 'at' h:mma"}}</cite>
+					</div>
+					<p class="msg-content" bind-html-compile="firstMessage[0].Body"></p>
+				</div>
+			</div>
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-2"></div>
+		</div>
+	</div>
+	<div class="msg_internal receiver" id="{{items.Id}}" ng-repeat="items in internalMessages.slice().reverse() | filter: ConversationId">
+		<div class="row">
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+				<img src="{{items.Author.AvatarUrl}}" ng-if="items.Author.AvatarUrl != avatarUrl" ng-init="removeReceiver(items.Id)" class="sender">
+			</div>
+			<div class="col-xs-6 col-sm-6 col-lg-8 col-md-8">
+				<div class="show_message">
+					<div class="clearfix">
+						<cite class="date-show">{{localDate(items.CreatedDate) | date:"MM/dd/yyyy 'at' h:mma"}}</cite>
+					</div>
+					<p class="msg-content"  dynamic="{{items.Body}}"></p>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+				<img src="{{items.Author.AvatarUrl}}" ng-if="items.Author.AvatarUrl == avatarUrl" class="sender">
+			</div>
+		</div>
+	</div>
+	
+	<div class="msg_internal textbox">
+		<form method="post" ng-submit="submitMessageReply()">
+			<div class="row">
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+					
+				</div>
+				<div class="col-xs-6 col-sm-6 col-lg-8 col-md-8">
+					<div class="submit-messag">
+						<textarea class="submit-message" placeholder="Reply"  ng-model="messageReplyText"></textarea>
+					</div>
+					<button type="submit" class="submit-text">SEND</button>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+					<img src="{{avatarUrl}}" class="sender">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	
+
+</div>
+</div>
+		
+<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+
+<div class="quickpool_cont compose">
+<div class="greentitle_top">COMPOSE</div>
+<form ng-submit="createNewMessage()" method="post" class="form-container">
+	<div class="imgloader" ng-show="disableSendButton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
+	<div class="quickpool clearfix">
+		<input type="text" placeholder="TO: MODERATORS" class="form-control inputbx" ng-model="subject" disabled />
+		<textarea class="form-control textarea" placeholder="TYPE your message here" ng-model="messageBody" required></textarea>
+		<!-- <div class="center_btn">
+			<button class="postbtn" type="submit" style="margin: 0; float: left">SEND</button>
+			<span class="infoM success mess"><img src="images/check.png">Message Sent</span>
+			<span class="infoM failure mess"><img src="images/error.png">Message Not Sent</span>
+		</div> -->
+		<div class="center_btn clearfix">
+			<button class="postbtn" type="submit" style="margin: 0; float: left" ng-hide="hideSendButton" ng-disabled="disableSendButton">SEND</button>
+			<span class="infoM success mess" ng-show="hideSendButton && !hideSentMessage"><img src="images/check.png">Message Sent</span>
+			<span class="infoM failure mess" ng-show="hideSentMessage && hideSendButton"><img src="images/error.png">Message Not Sent</span>
+		</div>
+	</div>
+</form>
+</div>
+</div>
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+
+<!-- Middle Section end -->
+
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'})
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'})
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'})
+		$('.mobile_nav').removeClass('shows');
+	})
+</script>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+## Project Name   :  Hiring Back end Web Developer _7432_-7432
+## Done by		  :  Html Coding by: Emp ID- 1433
+## Created Date   :  14-08-2014
+## Description    :  HTML development for responsive website.  
+-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>:: HTML development for responsive website ::</title>
+
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- End Bootstrap -->
+
+<!-- Custom Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300,900' rel='stylesheet' type='text/css'>
+<!-- Custom Fonts -->
+
+<!-- Custom css -->
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/bootstrap-select.css" type="text/css">
+<!-- End Custom css -->
+
+<style type="text/css">
+	.custom-radio{
+		width: 18px;
+		height: 18px;
+		display: inline-block;
+		position: relative;
+		z-index: 1;
+		top: 3px;
+		background: url("images/radio.png") no-repeat;
+	}
+	.custom-radio:hover{            
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio.selected{
+		background: url("images/radio-selected.png") no-repeat;
+	}
+	.custom-radio input[type="radio"]{
+		margin: 1px;
+		position: absolute;
+		z-index: 2;            
+		cursor: pointer;
+		outline: none;
+		opacity: 0;
+		/* CSS hacks for older browsers */
+		_noFocusLine: expression(this.hideFocus=true); 
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		filter: alpha(opacity=0);
+		-khtml-opacity: 0;
+		-moz-opacity: 0;
+	}
+	
+.checkbox {
+	width: 24px;
+	height: 24px;
+	padding: 0 5px 0 0;	
+	background:url("images/checkbox_new.png") no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+	margin:0px;
+}
+	
+.chkTxt {display: block;padding-left: 34px;position: absolute;top: 46px;width: 100%; top:2px;}
+	
+    /* Let's Beautify Our Form */
+   
+</style>
+
+</head>
+ <body class="dashboard_pages">
+<!-- Header -->
+ <header>
+
+<div class="container-fluid">
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="top_header clearfix">
+		<div class="logo"><img src="images/logo.png" alt=""/></div>
+		<div class="head_rightsec">
+			<div class="mobile_nav"><a href="#"><img src="images/mobile-menu.png" alt=""></a></div>
+			<div class="menu_drop">				
+				<select class="selectpicker">
+				<option>Howdy, Dyan!</option>
+				<option>Ketchup</option>
+				<option>Relish</option>
+				</select>
+			</div>
+			<div class="menu_right clearfix">
+			<div class="cross"><a href="#"><img src="images/cross_img.png" alt=""></a></div>
+				<ul>
+				<li ><a href="#">FEED</a></li>
+				<li ><a href="#">QUIZZES</a><span class="notification">3</span></li>
+				<li ><a href="#">MESSAGES</a><span class="notification cyanbg">11</span></li>
+				<li ><a href="#">FORUM</a><span class="notification pinkbg">60</span></li>
+				</ul>			
+			</div>
+			
+			
+		</div>		
+		</div>			
+	</div>	
+</div>
+</div>		
+</div>
+ </div>
+</header>
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div class="myprofile_cont brd_radius">
+		<div class="bluetitle_top">MY PROFILE</div>
+		<div class="myprofile_inner">
+			<div class="profile_name clearfix">
+			<span class="user_profpic"><img class="img-responsive img-circle" src="images/user.png" alt=""></span>
+			<div class="user_dtl_right">
+			<span class="user_dtl">DAYAN
+			D'ANIELLO</span>
+			<span class="user_alias">@ddaniello</div>
+			</div>
+			<div class="reward_sec clearfix">
+			<span class="rwd_balance">Rewards Balance:</span>
+			<div class="rwd_price">$65</div>
+			</div>
+		</div>
+		
+<div class="profile_listing clearfix">
+<ul>
+	<li><a class="active" href="javascript:void(0)"><span class="reward_icon"></span> REWARDS</a></li>
+	<li><a href="javascript:void(0)"><span class="setting_icon"></span> SETTINGS</a></li>
+	<li><a href="javascript:void(0)"> <span class="badges_icon"></span>BADGES</a></li>
+</ul>
+</div>
+		
+	</div>
+	
+	<div class="profile_bottom clearfix">
+		<ul>
+			<li><a href="#">FEED</a> </li>
+			<li><a href="#">QUIZZES</a> </li>
+			<li><a href="#">MESSAGES</a> </li>
+			<li><a href="#">fORUM</a> </li>
+			<li>MAVY &copy; 2015</li>
+		</ul>
+	
+	</div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+<div class="forumtitle_top feedblue">QUIZZES</div>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+		<div class="main_box">		
+			<div class="quizzes_sec clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="internalquiz clearfix">
+						<h3>Desk archetype quiz</h3>
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="deskquiz">
+							<img class="img-responsive" src="images/deskquiz_img1.jpg" alt="">
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="deskquiz">
+							<img class="img-responsive" src="images/deskquiz_img2.jpg" alt="">
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="deskquiz">
+							<img class="img-responsive" src="images/deskquiz_img3.jpg" alt="">
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="deskquiz">
+							<img class="img-responsive" src="images/deskquiz_img4.jpg" alt="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+<div class="deskpreference">
+	<h3>Which desk would you prefer to have?</h3>
+	
+<ul>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The desk with the laptop</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The Nice macbook</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">Ooh, the one with the plant!</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The Last One</div></label>
+</li>
+
+</ul>
+<div class="left_btn">
+<button class="postbtn">SUBMIT</button>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+<div class="deskpreference">
+	<h3>Which desk best represents you?</h3>
+	
+<ul>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The desk with the laptop</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The Nice macbook</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">Ooh, the one with the plant!</div></label>
+</li>
+
+<li>
+<label><input type="checkbox" name="a" class="styled" /> <div class="chkTxt">The Last One</div></label>
+</li>
+
+</ul>
+<div class="left_btn">
+<button class="postbtn">SUBMIT</button>
+</div>
+</div>
+</div>
+
+
+					</div>
+					
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <ul>
+						<li>
+							<h3>PICK YOUR PET QUIZ</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img1.png" alt=""></div>
+							<p>It's plain and simple, what's your favorite pet?</p>
+						</li>
+						
+						<li>
+							<h3>COFFEE COFFEE COFFEE</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img2.png" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>
+						
+						<li>
+							<h3>WORKSPACE ARCHETYPES</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img3.png" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>
+					</ul> -->
+	
+	
+	
+	</div>			
+</div>
+
+</div>
+</div>
+		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div class="quickpool_cont">
+<div class="greentitle_top">QUICK POLL</div>
+<div class="quickpool clearfix">
+<h3>How are you today?</h3>
+<ul>
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> Yes</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> No</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> May be</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> Good</label>
+</div>
+</li>
+</ul>
+	<div class="center_btn">
+	<button class="postbtn">SUBMIT VOTE</button>
+	</div>			
+</div>	
+</div>
+	
+<div class="quickpool_cont qpool2">
+<div class="greentitle_top">QUICK POLL</div>
+<div class="quickpool clearfix">
+<h3>How are you today?</h3>
+<ul>
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> Yes</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> No</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> May be</label>
+</div>
+</li>
+
+<li>
+<div class="radio">
+<label><input type="radio" name="browser" value="firefox"> Good</label>
+</div>
+</li>
+</ul>
+	<div class="center_btn">
+	<button class="postbtn">SUBMIT VOTE</button>
+	</div>			
+</div>	
+</div>
+	
+</div>
+</div>
+</div>
+<!-- Middle Section end -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<!-- Custom Select box -->
+<script type="text/javascript" src="js/custom-form-elements.js"></script>
+<script src="js/bootstrap-select.js"></script>
+
+<script type="text/javascript">
+    function customRadio(radioName){
+        var radioButton = $('input[name="'+ radioName +'"]');
+        $(radioButton).each(function(){
+            $(this).wrap( "<span class='custom-radio'></span>" );
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+        });
+        $(radioButton).click(function(){
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+            $(radioButton).not(this).each(function(){
+                $(this).parent().removeClass("selected");
+            });
+        });
+    }
+    $(document).ready(function (){
+        customRadio("browser");
+        customRadio("search-engine");            
+        customRadio("confirm");
+    })
+	
+	$('.selectpicker').selectpicker();
+</script>
+
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'})
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'})
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'})
+		$('.mobile_nav').removeClass('shows');
+	})
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>

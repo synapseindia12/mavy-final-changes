@@ -1,0 +1,108 @@
+
+<!-- Header -->
+<div ng-include="'navigation.html'"></div>
+<!-- End header -->
+
+<!-- Middle Section Start -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+
+<div class="forumtitle_top feedblue">QUIZZES</div>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+		<div class="main_box">		
+			<div class="quizzes_sec clearfix">
+				
+					<div class="mypet_quiz clearfix">
+					<ul>
+						<li ng-repeat="assignment in allAssignments track by $index" ng-click="showAssignmentTasks(assignment)" class="quiz-item">
+	
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-12">
+									<cite>{{$index+1}}</cite>
+								</div>
+								<div class="col-lg-8 col-md-7 col-sm-12">
+									<div class="qz_text">
+										<h3>{{assignment.moduleTitle}}</h3>
+										<p dynamic="{{assignment.options.instructions}}"></p>
+									</div>
+									
+								</div>
+								<div class="col-lg-2 col-md-3 col-sm-12" style="text-align:center">
+									<a href="javascript:void(0)" data-time="{{assignment.lengthInMinutes}} minutes" ng-if="assignment.lengthInMinutes>=15"><img src="images/qtr_watch.png" alt="More than 15 mins"></a>
+									<a href="javascript:void(0)" data-time="{{assignment.lengthInMinutes}} minutes" ng-if="assignment.lengthInMinutes>=5 && assignment.lengthInMinutes<15"><img src="images/less15watch.png" alt="less than 15 mins"></a>
+									<a href="javascript:void(0)" data-time="{{assignment.lengthInMinutes}} minutes" ng-if="assignment.lengthInMinutes<5"><img src="images/less5watch.png" alt="less than 5 mins"></a>
+									<a ng-if="assignment.mode==3" data-mode="{{assignment.mode}}" href="javascript:void(0)"><img src="images/desktop.png"></a>
+									<a ng-if="assignment.mode==2" data-mode="{{assignment.mode}}" href="javascript:void(0)"><img src="images/desktop.png"></a>
+									<a ng-if="assignment.mode==1" data-mode="{{assignment.mode}}" href="javascript:void(0)"><img src="images/mobile_icon.png"></a>
+									<a ng-if="assignment.mode==2" data-mode="{{assignment.mode}}" href="javascript:void(0)"><img src="images/mobile_icon.png"></a>
+								</div>
+							</div>
+							
+						</li>
+						
+					</ul>
+					</div>
+				
+			</div>
+		</div>
+	
+	
+	
+	</div>			
+</div>
+
+</div>
+</div>
+		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+		$(function(){
+			$('body').on('mouseover','.mypet_quiz ul li a:first-child',function(){
+				$('.quiz_tip').remove();
+				var quizL = $(this).data('time');
+				var toolT = "<div class='quiz_tip'>Estimated Time: "+quizL+"</div>";
+				$('body').append(toolT);
+				var elW = $('.quiz_tip').outerWidth()/2;
+				$('.quiz_tip').css({'top':($(this).offset().top-80),'left':($(this).offset().left-elW)});
+
+			})
+			$('body').on('mouseout','.mypet_quiz ul li a:first-child',function(){
+				$('.quiz_tip').remove();
+			})
+			$('body').on('mouseover','.mypet_quiz ul li a[data-mode]',function(){
+	
+				$('.quiz_tip').remove();
+				var mode=$(this).data('mode');
+				if(mode==1){
+					var toolT = "<div class='quiz_tip'>Mobile only quiz</div>";
+				}
+				else if(mode==3){
+					var toolT = "<div class='quiz_tip'>Desktop only quiz</div>";
+				}
+				else{
+					var toolT = "<div class='quiz_tip'>Desktop & Mobile quiz</div>";
+				}
+				$('body').append(toolT);
+				var elW = $('.quiz_tip').outerWidth()/2;
+				$('.quiz_tip').css({'top':($(this).offset().top-80),'left':($(this).offset().left-elW)});
+			})
+			$('body').on('mouseout','.mypet_quiz ul li a[data-mode]',function(){
+				$('.quiz_tip').remove();
+			})
+		})
+	
+
+	</script>

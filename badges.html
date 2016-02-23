@@ -1,0 +1,146 @@
+
+<!-- Header -->
+ <!-- <div ng-include="'navigation.html'"></div> -->
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid mrgn-btm">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum">
+<div class="forumtitle_top feedblue">BADGES</div>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+		<div class="main_box">		
+			<div class="quizzes_sec clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="cont_badges clearfix">						
+					<div class="row">
+						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" ng-repeat="badges in allBadges">
+							<div class="outer_badge">
+								<div class="badge_box">
+									<figure class="caption-bottom">
+										<img src="{{badges.url}}" alt="">
+										<figcaption>
+											{{badges.description}}
+										</figcaption>
+									</figure>	
+								</div>
+								<h3 style="margin-top: 20px; margin-bottom: 10px;">{{badges.badge}}</h3>
+							</div>
+						</div>
+					<!--	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_2.png" alt="">
+								</div>
+								<h3>HEALTH NUT</h3>
+								<p>Complete a quiz in the health category to own this nutty badge</p>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_3.png" alt="">
+								</div>
+								<h3>NIGHT OWL</h3>
+								<p>Take 20 quizzes at night and this Night Owl badge is yours</p>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_4.png" alt="">
+								</div>
+								<h3>Odyssey</h3>
+								<p>Complete our Experiencias Xcaret survey and this Odyssey badge could be yours
+</p>
+							</div>
+						</div>
+						
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_5.png" alt="">
+								</div>
+								<h3>BRONZE AWARD</h3>
+								<p>Collect the Bronze Badge by completing 5 quizzes</p>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_6.png" alt="">
+								</div>
+								<h3>SILVER AWARD</h3>
+								<p>Collect the Silver Badge by completing 10 quizzes</p>
+							</div>
+						</div>
+						
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 clearfix" style="clear: left;">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_7.png" alt="">
+								</div>
+								<h3>GOLD AWARD</h3>
+								<p>Collect the Gold Badge by completing 25 quizzes</p>
+							</div>
+						</div>
+						
+						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<div class="outer_badge">
+								<div class="badge_box">
+								<img src="images/badge_8.png" alt="">
+								</div>
+								<h3>PLATINUM AWARD</h3>
+								<p>Collect the Platinum Badge by completing 50 quizzes</p>
+							</div>
+						</div>-->
+					</div>
+					
+					
+					
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <ul>
+						<li>
+							<h3>PICK YOUR PET QUIZ</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img1.png" alt=""></div>
+							<p>It's plain and simple, what's your favorite pet?</p>
+						</li>
+						
+						<li>
+							<h3>COFFEE COFFEE COFFEE</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img2.png" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>
+						
+						<li>
+							<h3>WORKSPACE ARCHETYPES</h3>
+							<div class="pfimg"><img class="img-responsive" src="images/img3.png" alt=""></div>
+							<p>How do you take your coffee?</p>
+						</li>
+					</ul> -->
+	
+	
+	
+	</div>			
+</div>
+
+</div>
+</div>
+		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>

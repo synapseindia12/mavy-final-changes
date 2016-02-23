@@ -1,0 +1,32 @@
+    <h1 class="hidden">Result Page</h1>
+	<div ng-include="'navigation.html'"></div>
+    <div id="sb-site"><!--wrapper so content moves when slide out menus are clicked-->
+        <!--start poll results content-->
+        <div class="grid-block wrap">
+            <section class="grid-block small-12 medium-8 vertical">
+                <h2 class="hidden">Poll Results</h2>                
+                <div class="grid-block small-up-1 medium-up-2 large-up-2">                   
+                    <!--pastquestion results box 1-->
+                    <div class="grid-content" ng-repeat="item in displayPollTotalResults">
+                        <aside class="card pollResults">
+                            <div class="card-section">
+                                <div id="pollResult1">
+                                    <h5 class="pollQuestion" id="pastQuestion" bind-html-compile="item.pollTitle">{{item.pollTitle}}</h5>
+                                    <div class="results">
+                                        <p class="percents" id="result-poll-11" ng-repeat="option in item.options.categories">
+                                            <span class="result-text" id="results-poll-{{item.itemId}}-{{$index}}" ng-class="{'bgColor': applyBackground(item.itemId, $index)}">
+                                                {{option.values}}%
+                                            </span>
+                                            {{option.description}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+				</div>
+
+            </section>
+		</div>
+        <!-- Start Footer -->
+    </div><!--end sb-site container-->

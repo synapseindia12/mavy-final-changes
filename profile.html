@@ -1,0 +1,316 @@
+
+
+<!-- Header -->
+<!-- <div ng-include="'navigation.html'"></div> -->
+<!-- End header -->
+
+
+<!-- Middle Section Start -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+	<div ng-include="'left_column.html'"></div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+<div class="middle_forum" ng-init="profile = true">
+	<div class="row profilesetting_top">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-click="profile = true">
+			<div class="tabs {{profile}}" ng-class="profile ? 'active' : ''">
+				PROFILE SETTING
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-click="profile = false">
+			<div class="tabs" ng-class="!profile ? 'active' : ''">
+				ACCOUNT SETTING
+			</div>
+			
+		</div>
+	</div>
+<!--<ul class="profilesetting_top">
+	<li>PROFILE SETTING</li>
+	<li>ACCOUNT SETTING</li>
+</ul>-->
+<div class="row tab-section" id="profile_setting" ng-if="profile">		
+	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+		<div class="profile_pic_section">
+			<span style="position:relative">
+				
+				<img src="{{formData.avatarUrl}}" ng-if="!showLoader" />
+				<img alt="Uploading Image" ng-if="showLoader" class="profile uploadLoader" src="images/loading45.gif" style="position:relative;left:0;top:48%;height:100%;"/>
+				<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" style="height:185px;position:absolute;width:100%;opacity:0;cursor:pointer;top:0px;" />
+			</span>
+			
+			<a href="javascript: void(0)" ng-click="openFile()">EDIT PROFILE PICTURE</a>
+		</div>
+	</div>
+	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+		<form id="profile-form" ng-submit="updateProfile()" method="post">
+			<div class="form_section">
+				<div class="row">
+					<div class="imgloader" ng-show="disableSendButton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>FIRST NAME</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input type="text" class="name first bottom-border" name="fname" id="userFirstName" ng-model="formData.fname" required />
+						<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>LAST NAME</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input type="text" class="name last bottom-border" name="lname" id="userLastName" ng-model="formData.lname" required />
+						<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>EMAIL ADDRESS</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input type="email" class="email bottom-border" name="location" id="userEmail" ng-model="formData.email" required />
+						<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					
+						<table>
+							<tr>
+								<td><label>MONTH</label></td>
+								<td><label>DAY</label></td>
+								<td><label>YEAR</label></td>
+							</tr>
+							<tr>
+								<td>
+									<span>
+										<select name="months" class="selectpicker" ng-model="formData.selectedMonth" required initialize-selectpicker>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+										</select>
+									</span>
+								</td>
+								<td>
+									<span>
+										<select id="form_dob_day" class="selectpicker" name="dob_day" ng-model="formData.selectedDate" required initialize-selectpicker style="width:69px">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+											<option value="31">31</option>
+										</select>
+									</span>
+								</td>
+								<td>
+									<span style="max-width:200px;">
+										<select id="birthyear" name="birthyear" class="selectpicker" ng-model="formData.selectedYear" required initialize-selectpicker>
+											<option value="2006">2006</option>
+											<option value="2005">2005</option>
+											<option value="2004">2004</option>
+											<option value="2003">2003</option>
+											<option value="2002">2002</option>
+											<option value="2001">2001</option>
+											<option value="2000">2000</option>
+											<option value="1999">1999</option>
+											<option value="1998">1998</option>
+											<option value="1997">1997</option>
+											<option value="1996">1996</option>
+											<option value="1995">1995</option>
+											<option value="1994">1994</option>
+											<option value="1993">1993</option>
+											<option value="1992">1992</option>
+											<option value="1991">1991</option>
+											<option value="1990">1990</option>
+											<option value="1989">1989</option>
+											<option value="1988">1988</option>
+											<option value="1987">1987</option>
+											<option value="1986">1986</option>
+											<option value="1985">1985</option>
+											<option value="1984">1984</option>
+											<option value="1983">1983</option>
+											<option value="1982">1982</option>
+											<option value="1981">1981</option>
+											<option value="1980">1980</option>
+											<option value="1979">1979</option>
+											<option value="1978">1978</option>
+											<option value="1977">1977</option>
+											<option value="1976">1976</option>
+											<option value="1975">1975</option>
+											<option value="1974">1974</option>
+											<option value="1973">1973</option>
+											<option value="1972">1972</option>
+											<option value="1971">1971</option>
+											<option value="1970">1970</option>
+										</select>
+									</span>
+								</td>
+								
+							</tr>
+						</table>
+						<div class="grybdr"></div>
+					</div>
+					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>GENDER</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<span style="max-width:100px;">
+										<select class="selectpicker" name="gender" id="userGender" ng-model="formData.gender" required initialize-selectpicker>
+											<!--<option value="-">-</option>-->
+											<option value="F">Female</option>
+											<option value="M">Male</option>
+										</select>
+									</span>						
+									<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>ZIP CODE</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input type="text" class="zipcode bottom-border" name="zipcode" id="zipcode" ng-model="formData.zipcode" />
+						<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>MOBILE NUMBER</label>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<input name="phonenumber" ui-mask="(999) 999-9999" ng-blur="y='(999) 999-9999'" ng-model="formData.mobileNumber" class="mobile bottom-border" numbers-only="numbers-only" maxlength="28" name="mobile" id="userMobile" />
+						<div class="grybdr"></div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<button type="submit" class="save" value="SAVE CHANGES" id="submit" ng-disabled="disableSendButton" ng-hide="hideSaveButton">SAVE CHANGES</button>
+						<span class="infoM success" ng-show="hideSaveButton"><img src="images/check.png">Changes saved successfully</span>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row tab-section" id="account_setting" ng-if="!profile">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="account_section">
+				<div class="row">
+					<form id="change-password" ng-submit="resetPass(resetPassword)" method="post" class="form-container" style="left: -15px;overflow: hidden;position: relative;">
+						<div class="imgloader" ng-show="disablePasswordChangeButton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h5>CHANGE PASSWORD</h5>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>CURRENT PASSWORD</label>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input type="password" name="current_password" id="currentPasssword"  class="bottom-border" ng-model="resetPassword.cpass" required />
+							<div class="grybdr"></div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>NEW PASSWORD</label>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input type="password" name="new_password" class="bottom-border" id="newPassword" ng-model="resetPassword.npass" required />
+							<div class="grybdr"></div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>VERIFY NEW PASSWORD</label>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input type="password" name="verify_password" id="verify_password" class="bottom-border" ng-model="resetPassword.vnpass" required />
+							<div class="grybdr"></div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!--<a type="submit" class="save">SAVE CHANGES</a>-->
+							<button class="save" type="submit" ng-hide="hidePasswordChangeButton" ng-disable="disablePasswordChangeButton">SAVE CHANGES</button>
+							<span class="infoM success" ng-show="hidePasswordChangeButton"><img src="images/check.png">Changes saved successfully</span>
+						</div>
+					</form>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="notificationCtrl" style="left: -15px;">
+						<div class="imgloader" ng-show="disableNotificationSaveButton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
+						<h5>NOTIFICATIONS</h5>
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+								<label>QUIZZES</label>
+								<div class="btn_sel">
+									<input type="checkbox" class="switch-email" ng-model="emailCheck" />
+									<a href="javascript: void(0)" ng-class="{selected: emailCheck}">EMAIL</a>
+									<input type="checkbox" class="switch-sms" ng-model="smsCheck" />
+									<a href="javascript: void(0)" ng-class="{selected: smsCheck}">TEXT</a>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+								<label>RESULTS</label>
+								<div class="btn_sel">
+									<input type="checkbox" class="switch-email" ng-model="resultsEmail" />
+									<a href="javascript: void(0)" ng-class="{selected: resultsEmail}">EMAIL</a>
+									<input type="checkbox" class="switch-sms" ng-model="resultsSMS" />
+									<a href="javascript: void(0)" ng-class="{selected: resultsSMS}">TEXT</a>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+								<label>FORUM</label>
+								<div class="btn_sel">
+									<input type="checkbox" class="switch-email" ng-model="forumEmail" />
+									<a href="javascript: void(0)" ng-class="{selected: forumEmail}">EMAIL</a>
+									<input type="checkbox" class="switch-sms" ng-model="forumSMS" />
+									<a href="javascript: void(0)" ng-class="{selected: forumSMS}">TEXT</a>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+								<label>MESSAGES</label>
+								<div class="btn_sel">
+									<input type="checkbox" class="switch-email" ng-model="messagesEmail" />
+									<a href="javascript: void(0)" ng-class="{selected: messagesEmail}">EMAIL</a>
+									<input type="checkbox" class="switch-sms" ng-model="messagesSMS" />
+									<a href="javascript: void(0)" ng-class="{selected: messagesSMS}">TEXT</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<button class="save" type="submit" ng-click="updateNotification()" style="margin-right:35px" ng-hide="hideNotificationSaveButton" ng-disabled="disableNotificationSaveButton">SAVE CHANGES</button>
+							<span class="infoM success" ng-show="hideNotificationSaveButton"><img src="images/check.png">Changes saved successfully</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+</div>		
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">	
+	<div ng-include="'polls.html'" ng-controller="pollsCtrl"></div>
+</div>
+</div>
+</div>

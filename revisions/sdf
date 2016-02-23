@@ -1,0 +1,33 @@
+setTimeout(function(){
+				for(var p=0;p<$scope.activeThreads.length;p++){
+			 	childCounter=0;
+			 	$scope.childThreads=[];
+			 	console.log($scope.activeThreads.length);
+			 	endpoints.mobileHandler.getThreadReplies($scope.apiKey,$scope.userId,$scope.activeThreads[p].Id,null,null,function(child){
+					if(child.result.success){
+						debugger;
+						//alert($scope.activeThreads[p].Id);
+					   if(child.result.result[1].Replies) {
+						for(var j=0; j<child.result.result[1].Replies.length; j++){    
+						 if($scope.activeThreads[p].Id == child.result.result[1].Replies[j].ThreadId)
+						  $scope.childThreads.push(child.result.result[1].Replies[j]);
+						//alert($scope.activeThreads.length+' '+$scope.childThreads.length);
+						}
+					   }
+					   
+					}
+				});
+				//alert($scope.activeThreads.length+' '+$scope.childThreads.length);
+				for(var k=0;k<$scope.childThreads.length;k++){
+					//alert($scope.activeThreads.length+' '+$scope.childThreads.length);
+					if($scope.activeThreads[p].Id == $scope.childThreads[k].ThreadId && $scope.childThreads[k].ParentId == 0){
+						childCounter++;
+					}
+				}
+				//alert(childCounter);
+				$scope.activeThreads[p].ReplyCount=childCounter;
+
+				//console.log($scope.activeThreads[i].ReplyCount);
+				
+			 }
+			},1000)

@@ -1,0 +1,54 @@
+<div ng-controller="navCtrl">
+	<header>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="top_header clearfix">
+						<div class="logo"></div>
+						<div class="head_rightsec">
+							<div class="mobile_nav"><a href="javascript:void(0)"><img src="images/mobile-menu.png" alt=""></a></div>
+							<div class="menu_drop">
+								<select class="selectpicker" ng-model="model" initialize-selectpicker>
+									<option selected>Hello, {{fname}}!</option>
+									<!-- <option value="ketchup"> Had enough for today?</option> -->
+									<option value="logout">Log Out</option>
+								</select>
+							</div>
+							<div class="menu_right clearfix">
+								<div class="cross"><a href="javascript:void(0)"><img src="images/cross_img.png" alt=""></a></div>
+								<ul>
+									<li><a href="#/" ng-href="#/">FEED</a></li>
+									<li><a href="#/assignment" ng-href="#/assignment">QUIZZES</a><span class="notification" ng-bind="assignmentsCounts"></span></li>
+									<li><a href="#/messages" href="#/messages">MESSAGES</a><span class="notification cyanbg" ng-bind="msgCount"></span></li>
+									<li><a href="#/forum" ng-href="#/forum">FORUM</a><!--<span class="notification pinkbg" ng-bind="forumsCount"></span>--></li>
+								</ul>			
+							</div>		
+						</div>
+					</div>			
+				</div>	
+			</div>
+		</div>
+	</header>
+</div>
+<script type="text/javascript">
+ $('.mobile_nav').click(function()
+	{
+		if($(this).hasClass('shows'))
+		{			
+			$('.menu_right').animate({'left':'-220px'})
+			$(this).removeClass('shows');	
+		}
+		else
+		{
+			$('.menu_right').animate({'left':'0px'})
+			$(this).addClass('shows');
+		}		
+	});
+	
+	$('.cross').click(function()
+	{
+		$('.menu_right').animate({'left':'-220px'})
+		$('.mobile_nav').removeClass('shows');
+	});
+</script>
+

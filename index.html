@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MAVY is a virtual community created and managed by Millennials, for Millennials, to tell our favorite brands exactly what we want."/>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,900,700,400,100italic,300italic,400italic,700italic,900italic,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <title>MAVY - Share your voice</title>
+	<!-- <base href="/" /> -->
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <!-- End Bootstrap -->
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+	<link rel="stylesheet" href="css/bootstrap-select.css" type="text/css" />
+	<link rel="stylesheet" href="css/ng-slim-scroll.css" type="text/css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- End Custom css -->
+   
+    
+</head>
+
+<body ng-app="mavyApp" style="position:relative">
+    <h1 class="hidden">Home Page</h1>
+	<div class="navigationBlock" ng-include="'navigation.html'"></div>
+	<div ng-view=""></div>
+	
+    <!--slideout sidebar left-->
+    <!--end header logo & menu-->
+	<!--<div class="footer-wrapper">
+		<footer class="footer-text" ng-include="'footer.html'"></footer>
+	</div>-->
+    <!--end sb-site container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+		window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')
+    </script>
+   
+    
+	<!--<script src="http://backend.mavycommunity.com/api_crr/mobilehandler.ashx?proxy"></script> THIS IS USED FOR PRODUCTION --> 
+	<script src="http://agencydev.crresearch.com/api_crr/mobilehandler.ashx?proxy"></script><!-- THIS IS USED FOR TESTING -->
+	<script src="http://crmediautility.elasticbeanstalk.com/mediaHandler.ashx?proxy"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
+	
+    <script src="js/jquery.tooltipster.min.js"></script>
+    <script src="js/slidebars.js"></script>
+	<script src="js/bootstrap-select.js"></script>
+    
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-cookies.js"></script>
+	<script type="text/javascript" src="http://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+	<script src="http://rawgithub.com/GoDisco/ngFacebook/master/ngFacebook.js"></script>
+	<script src="js/mask.js"></script>
+	<script src="js/ui-bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core-min.js "></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/cipher-core-min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/pbkdf2.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-utf16-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-sanitize.js"></script>
+	<script type="text/javascript" src="js/jquery.pagepiling.min.js"></script>
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script src="js/ng-slim-scroll.js"></script>
+	<script src="js/app.js"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<script src="js/main.js"></script> -->
+	<script type="text/javascript">
+		$(function(){
+			$(document).on('click','.viewImage a',function(){
+				var attr = $(this).parent('.viewImage').parent().find('.postbody').attr('style');
+				if (typeof attr !== typeof undefined && attr !== false) {
+					$(this).parent('.viewImage').parent().find('.postbody').removeAttr('style');
+					$(this).parent('.viewImage').parent().find('.postbody').find('img').css({'height':'0'});
+					$(this).html('..View Image');	
+				}
+				else{
+					$(this).parent('.viewImage').parent().find('.postbody').css({'max-height':'100%'});
+					$(this).parent('.viewImage').parent().find('.postbody').find('img').css({'height':'auto'});
+					$(this).html('Collapse');
+				}
+			});
+			$(document).on('click','.readMoretab a',function(){
+				var attr = $(this).parent('.readMoretab').siblings('.postbody').attr('style');
+				if (typeof attr !== typeof undefined && attr !== false) {
+					$(this).parent('.readMoretab').siblings('.postbody').removeAttr('style');
+					$(this).html('..Read more');	
+				}
+				else{
+					$(this).parent('.readMoretab').siblings('.postbody').css({'max-height':'100%'});
+					$(this).html('Collapse');
+				}
+			});
+			$(document).on('click','.readmore a',function(){
+				var attr = $(this).parent('.readmore').siblings('.postbody').attr('style');
+				if (typeof attr !== typeof undefined && attr !== false) {
+					$(this).parent('.readmore').siblings('.postbody').removeAttr('style');
+					$(this).html('..Read more');	
+				}
+				else{
+					$(this).parent('.readmore').siblings('.postbody').css({'max-height':'100%'});
+					$(this).html('Collapse');
+				}
+			});
+		});			
+	</script>
+</body>
+
+</html>
