@@ -87,6 +87,7 @@
 	
 	<div class="msg_internal textbox">
 		<form method="post" ng-submit="submitMessageReply()">
+			<div class="imgloader" ng-show="disableReplybutton"><img src="http://mavycommunity.com/images/loading45.gif" /></div>
 			<div class="row">
 				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
 					
@@ -95,7 +96,7 @@
 					<div class="submit-messag">
 						<textarea class="submit-message" placeholder="Reply"  ng-model="messageReplyText"></textarea>
 					</div>
-					<button type="submit" class="submit-text">SEND</button>
+					<button type="submit" class="submit-text" ng-disabled="disableReplybutton">SEND</button>
 				</div>
 				<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
 					<img src="{{avatarUrl}}" class="sender">
