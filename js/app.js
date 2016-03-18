@@ -213,7 +213,7 @@ myApp.controller('signupCtrl', function($scope, $rootScope, $location, $cookieSt
 	};
 });
 
-myApp.controller('fbloginModalCtrl', function($scope, $modalInstance, $location, $localStorage, returnCode){
+myApp.controller('fbloginModalCtrl', function($scope, $modalInstance, $location, $localStorage, $rootScope, returnCode){
 	$scope.returnCode = returnCode;
 	$scope.ok = function(){
 		$rootScope.initialized = false;
@@ -222,7 +222,6 @@ myApp.controller('fbloginModalCtrl', function($scope, $modalInstance, $location,
 			delete $localStorage.loggedIn;
 			delete $localStorage.loginDetails;
 		}
-		$location.path('/');
 		$modalInstance.dismiss('cancel');
 	};
 	$scope.cancel = function (){
